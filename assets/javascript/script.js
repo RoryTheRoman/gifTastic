@@ -16,7 +16,7 @@ function createGif () {
         		var gifDiv = $("<div>");
         		gifDiv.addClass("gifDiv")
         		var rating = $("<p>");
-        		rating.text(results[i].rating);
+        		rating.text("Rating: " + " " + results[i].rating);
         		gifDiv.append(rating);
         		var gifImage = $("<img>");
         		gifImage.addClass("image");
@@ -28,19 +28,17 @@ function createGif () {
         		gifDiv.append(gifImage);
  				$("#show-gifs").append(gifDiv);
         	}
-    $(".image").on("click", function() {
-    	var state = $(this).attr("data-state");
+			    $(".image").on("click", function() {
+		    	var state = $(this).attr("data-state");
 
-    	if (state === "still") {
-	        $(this).attr("src", $(this).attr("data-animate"));
-	        $(this).attr("data-state", "animate");
-	      } else {
-	        $(this).attr("src", $(this).attr("data-still"));
-	        $(this).attr("data-state", "still");
-	      }
-    });
-   		        	
-
+		    	if (state === "still") {
+			        $(this).attr("src", $(this).attr("data-animate"));
+			        $(this).attr("data-state", "animate");
+			      } else {
+			        $(this).attr("src", $(this).attr("data-still"));
+			        $(this).attr("data-state", "still");
+			      }
+			    });
         });
 
 }//closes createGif function
@@ -48,9 +46,11 @@ function createGif () {
 
 	function createButton () {
 		$("#display-buttons").empty();
+
 		for (var i = 0; i < gifs.length; i++) {
 		var b = $("<button>");
 		b.addClass("gif");
+		b.addClass("btn btn-danger");
 
 ///!!!!! Will need to add a new class here for to make boostrap compatible when we get there.!!!!!!!!		
 		b.attr("data-name", gifs[i]);
@@ -63,11 +63,15 @@ function createGif () {
 		event.preventDefault();
 
 		var newGif = $("#gif-input").val().trim();
+		if (newGif === ""){
+			return;
+		}
 
 		gifs.push(newGif);
 		console.log("newarray" + gifs); //it is adding to my array
 
 		createButton();
+		newGif.each().reset();
 
 		// $("#gif-input").val('');
 

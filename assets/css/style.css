@@ -1,0 +1,13 @@
+button {
+	margin: 5px;
+}
+input {
+	margin: 5px;
+}
+header {
+	display: inline-block;
+	text-align: center;
+}
+form {
+	margin-left: 400px;
+}
