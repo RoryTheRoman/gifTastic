@@ -11,6 +11,7 @@ function createGif () {
         }).done(function(response) {
         	console.log(response);
         	var results = response.data;
+        	$("#show-gifs").empty();
         	for (var i = 0; i < results.length; i++) {
         		var gifDiv = $("<div>");
         		gifDiv.addClass("gifDiv")
@@ -18,13 +19,27 @@ function createGif () {
         		rating.text(results[i].rating);
         		gifDiv.append(rating);
         		var gifImage = $("<img>");
+        		gifImage.addClass("image");
         		gifImage.attr("src", results[i].images.fixed_height_still.url);
         		gifImage.attr("data-animate", results[i].images.fixed_height.url);
         		gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+        		gifImage.attr("data-state", "still");
         		console.log(gifImage);
         		gifDiv.append(gifImage);
  				$("#show-gifs").append(gifDiv);
         	}
+    $(".image").on("click", function() {
+    	var state = $(this).attr("data-state");
+
+    	if (state === "still") {
+	        $(this).attr("src", $(this).attr("data-animate"));
+	        $(this).attr("data-state", "animate");
+	      } else {
+	        $(this).attr("src", $(this).attr("data-still"));
+	        $(this).attr("data-state", "still");
+	      }
+    });
+   		        	
 
         });
 
@@ -65,5 +80,7 @@ function createGif () {
 
 	$(document).on("click", ".gif", createGif);
 
+
+
 	createButton();	
-	createGif();
+
