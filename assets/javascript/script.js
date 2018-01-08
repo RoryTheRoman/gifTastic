@@ -3,7 +3,7 @@ console.log("array:" + gifs);
 function createGif () {
 	var gifGet = $(this).attr("data-name");
 	console.log("this" + this);
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "&api_key=xuuNk345sik7Okl06nd5Ylgk7rTtDkop&limit=10";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifGet + "&api_key=xuuNk345sik7Okl06nd5Ylgk7rTtDkop&limit=10";
 
         $.ajax({
           url: queryURL,
@@ -63,7 +63,7 @@ function createGif () {
 
 	
 
-	$(document).on("click", ".gifDiv", createGif);
+	$(document).on("click", ".gif", createGif);
 
 	createButton();	
 	createGif();
