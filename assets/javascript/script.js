@@ -6,11 +6,13 @@ console.log("array:" + gifs);
 		for (var i = 0; i < gifs.length; i++) {
 		var b = $("<button>");
 		b.addClass("gif");
+
+///!!!!! Will need to add a new class here for to make boostrap compatible when we get there.!!!!!!!!		
 		b.attr("data-name", gifs[i]);
 		b.text(gifs[i]);
 		$("#display-buttons").append(b);
 		}
-
+//!!!! want to figure out how to make a blank button impossible!!!!!
 	}
 	$("#add-gif").on("click", function(event) {
 		event.preventDefault();
@@ -18,6 +20,7 @@ console.log("array:" + gifs);
 		var newGif = $("#gif-input").val().trim();
 
 		gifs.push(newGif);
+		console.log("newarray" + gifs); //it is adding to my array
 
 		createButton();
 
@@ -25,8 +28,10 @@ console.log("array:" + gifs);
 
 	});		
 
+
 	function createGif () {
 		var gifGet = $(this).attr("data-name");
+		console.log("this" + this);
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "&api_key=xuuNk345sik7Okl06nd5Ylgk7rTtDkop&limit=10";
 
 	        $.ajax({
@@ -36,7 +41,8 @@ console.log("array:" + gifs);
 	        	console.log(response);
 	        	var results = response.data;
 	        	for (var i = 0; i < results.length; i++) {
-	        		var gifDiv = $("<div class='gifDiv'>");
+	        		var gifDiv = $("<div>");
+	        		gifDiv.addClass("gifDiv")
 	        		var rating = $("<p>");
 	        		rating.text(results[i].rating);
 	        		gifDiv.append(rating);
