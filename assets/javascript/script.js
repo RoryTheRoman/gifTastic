@@ -1,7 +1,6 @@
 var gifs = ["winona ryder", "michael j fox", "tom hardy","lauren ambrose"];
 	function createGif () {
 		var gifGet = $(this).attr("data-name");
-		// var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifGet + "&api_key=Nk345sik7Okl06nd5Ylgk7rTtDkop&limit=5";
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "&api_key=xuuNk345sik7Okl06nd5Ylgk7rTtDkop&limit=10";
 
 	        $.ajax({
@@ -48,7 +47,8 @@ var gifs = ["winona ryder", "michael j fox", "tom hardy","lauren ambrose"];
 
 		$("#gif-input").val('');
 
-	});		
+	});	
+	createGif();	
 
 	$(document).on("click", ".gifDiv", createGif);
 
