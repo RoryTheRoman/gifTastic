@@ -71,9 +71,8 @@ function createGif () {
 		console.log("newarray" + gifs); //it is adding to my array
 
 		createButton();
-		newGif.each().reset();
 
-		// $("#gif-input").val('');
+		$("#gif-input").val(" ");
 
 	});		
 

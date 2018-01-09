@@ -9,5 +9,10 @@ header {
 	text-align: center;
 }
 form {
-	margin-left: 400px;
+	float: right;
+}
+.jumbotron {
+	margin-top: 10px;
+	background-color: green;
+	color: white;
 }
