@@ -1,5 +1,4 @@
-var gifs = ["winona ryder", "michael j fox", "tom hardy","lauren ambrose"];
-console.log("array:" + gifs);
+var gifs = ["winona ryder", "michael j fox", "tom hardy","lauren ambrose",];
 function createGif () {
 	var gifGet = $(this).attr("data-name");
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifGet + "&api_key=xuuNk345sik7Okl06nd5Ylgk7rTtDkop&limit=10";
@@ -10,20 +9,21 @@ function createGif () {
         	var results = response.data;
         	$("#show-gifs").empty();
         	for (var i = 0; i < results.length; i++) {
+        		if (results[i].rating !== "r") {
         		var gifDiv = $("<div>");
         		gifDiv.addClass("gifDiv")
-        		var rating = $("<p>");
-        		rating.text("Rating: " + " " + results[i].rating);
-        		gifDiv.append(rating);
         		var gifImage = $("<img>");
         		gifImage.addClass("image");
         		gifImage.attr("src", results[i].images.fixed_height_still.url);
         		gifImage.attr("data-animate", results[i].images.fixed_height.url);
         		gifImage.attr("data-still", results[i].images.fixed_height_still.url);
         		gifImage.attr("data-state", "still");
-        		console.log(gifImage);
         		gifDiv.append(gifImage);
+        		var rating = $("<p>");
+        		rating.text("Rating: " + " " + results[i].rating);
+        		gifDiv.append(rating);
  				$("#show-gifs").append(gifDiv);
+        		} 				
         	}
 			    $(".image").on("click", function() {
 		    	var state = $(this).attr("data-state");

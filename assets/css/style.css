@@ -11,10 +11,12 @@ input {
 header {
 	display: inline-block;
 	text-align: center;
+	font-family: 'Rock Salt', cursive;
 }
 
 .jumbotron {
 	margin-top: 10px;
 	background-color: green;
 	color: white;
+	opacity: .75;
 }
