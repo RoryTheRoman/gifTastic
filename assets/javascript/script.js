@@ -2,14 +2,11 @@ var gifs = ["winona ryder", "michael j fox", "tom hardy","lauren ambrose"];
 console.log("array:" + gifs);
 function createGif () {
 	var gifGet = $(this).attr("data-name");
-	console.log("this" + this);
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifGet + "&api_key=xuuNk345sik7Okl06nd5Ylgk7rTtDkop&limit=10";
-
         $.ajax({
           url: queryURL,
           method: "GET"
         }).done(function(response) {
-        	console.log(response);
         	var results = response.data;
         	$("#show-gifs").empty();
         	for (var i = 0; i < results.length; i++) {
@@ -43,47 +40,27 @@ function createGif () {
 
 }//closes createGif function
 
-
-	function createButton () {
-		$("#display-buttons").empty();
-
-		for (var i = 0; i < gifs.length; i++) {
-		var b = $("<button>");
-		b.addClass("gif");
-		b.addClass("btn btn-danger");
-
-///!!!!! Will need to add a new class here for to make boostrap compatible when we get there.!!!!!!!!		
-		b.attr("data-name", gifs[i]);
-		b.text(gifs[i]);
-		$("#display-buttons").append(b);
-		}
-//!!!! want to figure out how to make a blank button impossible!!!!!
+function createButton () {
+	$("#display-buttons").empty();
+	for (var i = 0; i < gifs.length; i++) {
+	var b = $("<button>");
+	b.addClass("gif");
+	b.addClass("btn btn-danger");
+	b.attr("data-name", gifs[i]);
+	b.text(gifs[i]);
+	$("#display-buttons").append(b);
 	}
-	$("#add-gif").on("click", function(event) {
-		event.preventDefault();
-
-		var newGif = $("#gif-input").val().trim();
-		if (newGif === ""){
-			return;
-		}
-
-		gifs.push(newGif);
-		console.log("newarray" + gifs); //it is adding to my array
-
-		createButton();
-
-		$("#gif-input").val(" ");
-
-	});		
-
-
-
-
-	
-
-	$(document).on("click", ".gif", createGif);
-
-
-
-	createButton();	
+}
+$("#add-gif").on("click", function(event) {
+	event.preventDefault();
+	var newGif = $("#gif-input").val().trim();
+	if (newGif === ""){
+		return;
+	}
+	gifs.push(newGif);
+	createButton();
+	$("#gif-input").val(" ");
+});		
+$(document).on("click", ".gif", createGif);
+createButton();	
 
